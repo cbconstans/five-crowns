@@ -1,7 +1,31 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Card} = require('../server/db/models')
+
+const suits = ['Club', 'Diamond', 'Heart', 'Spade', 'Star']
+const values = ['3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+const deck = []
+for (let i = 0; i < suits.length; i++) {
+  for (let j = 0; j < values.length; j++) {
+    let card = {value: values[j], suit: suits[i]}
+    deck.push(card)
+  }
+}
+
+const times = x => f => {
+  if (x > 0) {
+    f()
+    times(x - 1)(f)
+  }
+}
+
+times(6)(() =>
+  deck.push({
+    value: 'Joker',
+    suit: null
+  })
+)
 
 async function seed() {
   await db.sync({force: true})
@@ -11,6 +35,12 @@ async function seed() {
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
+
+  await Promise.all(
+    deck.map(card => {
+      return Card.create(card)
+    })
+  )
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
