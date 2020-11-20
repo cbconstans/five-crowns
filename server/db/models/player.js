@@ -8,6 +8,10 @@ const Player = db.define('player', {
   socketId: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  isHost: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 

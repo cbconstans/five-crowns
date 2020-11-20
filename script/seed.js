@@ -3,9 +3,11 @@
 const db = require('../server/db')
 const {User, Card} = require('../server/db/models')
 
+// create the deck of cards
 const suits = ['Club', 'Diamond', 'Heart', 'Spade', 'Star']
 const values = ['3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const deck = []
+// add suited cards
 for (let i = 0; i < suits.length; i++) {
   for (let j = 0; j < values.length; j++) {
     let card = {value: values[j], suit: suits[i]}
@@ -13,13 +15,13 @@ for (let i = 0; i < suits.length; i++) {
   }
 }
 
+// add jokers
 const times = x => f => {
   if (x > 0) {
     f()
     times(x - 1)(f)
   }
 }
-
 times(6)(() =>
   deck.push({
     value: 'Joker',
@@ -27,6 +29,7 @@ times(6)(() =>
   })
 )
 
+// create the seed function
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
