@@ -1,7 +1,7 @@
 {
   "name": "five-crowns",
-  "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "version": "1.0.0",
+  "description": "A platform to play the popular, multi-player, rummy-based card game Five Crowns",
   "engines": {
     "node": "~12.11.1"
   },
