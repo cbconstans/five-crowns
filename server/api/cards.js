@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 // is this route for a single card needed? should it be Card.findOne()?
 router.get('/:id', async (req, res, next) => {
   try {
-    const card = await Card.findByPk(req.params.id)
+    const card = await Card.findByPk(+req.params.id)
     res.json(card)
   } catch (err) {
     next(err)
@@ -30,9 +30,9 @@ router.get('/:id', async (req, res, next) => {
 // is security needed to prevent players from accessing this?
 router.put('/:id/wild', async (req, res, next) => {
   try {
-    const card = await Card.findByPk(req.params.id)
+    const card = await Card.findByPk(+req.params.id)
     await card.update({isWild: !card.isWild})
-    res.status(200).end()
+    res.sendStatus(200)
   } catch (err) {
     next(err)
   }
