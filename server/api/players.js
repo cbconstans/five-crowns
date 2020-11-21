@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const db = require('../db/db')
 const {Player} = require('../db/models')
 module.exports = router
 
@@ -35,6 +36,17 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+// DELETE route to delete all players
+// /api/players
+router.delete('/', async (req, res, next) => {
+  try {
+    db.Player.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // DELETE route to delete a player
 // /api/players/:id
 router.delete('/:id', async (req, res, next) => {
@@ -53,9 +65,9 @@ router.delete('/:id', async (req, res, next) => {
 // /api/players/:id/host
 router.put('/:id/host', async (req, res, next) => {
   try {
-    const user = await Player.findByPk(req.params.id)
+    const user = await Player.findByPk(+req.params.id)
     await user.update({isHost: !user.isHost})
-    res.status(200).end()
+    res.sendStatus(200)
   } catch (err) {
     next(err)
   }
