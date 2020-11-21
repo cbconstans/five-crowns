@@ -84,9 +84,9 @@ export default function playerReducer(state = defaultPlayers, action) {
       return state.filter(player => player.id !== action.id)
     case TOGGLE_HOST:
       // need to return state with the specific card's wild status toggled
-      const player = state.filter(player => player.id === action.id)
-      player.isHost = !player.isHost
-      return [...state, player]
+      const host = state.filter(player => player.id === action.id)
+      host.isHost = !host.isHost
+      return [...state, host]
     case END_GAME:
       return defaultPlayers
     default:

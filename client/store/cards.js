@@ -21,7 +21,7 @@ const getDeck = deck => ({type: GET_DECK, deck})
 export const getCard = card => ({type: GET_CARD, card})
 export const removeCard = id => ({type: REMOVE_CARD, id})
 const toggleWild = id => ({type: TOGGLE_WILD, id})
-const endGame = () => ({type: END_GAME})
+export const endGame = () => ({type: END_GAME})
 
 /**
  * THUNK CREATORS
