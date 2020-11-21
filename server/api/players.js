@@ -40,7 +40,7 @@ router.post('/', async (req, res, next) => {
 // /api/players
 router.delete('/', async (req, res, next) => {
   try {
-    db.Player.destroy()
+    await db.Player.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)
