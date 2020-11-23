@@ -74,7 +74,7 @@ export const endGameThunk = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function playerReducer(state = defaultPlayers, action) {
+export default function playersReducer(state = defaultPlayers, action) {
   switch (action.type) {
     case GET_PLAYERS:
       return action.players
