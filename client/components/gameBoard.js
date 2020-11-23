@@ -9,7 +9,7 @@ class GameBoard extends Component {
   render() {
     return (
       <div>
-        <h3>Welcome, {}</h3>
+        <h3>DOES THIS RENDER?</h3>
       </div>
     )
   }
@@ -20,7 +20,7 @@ class GameBoard extends Component {
  */
 const mapState = state => {
   return {
-    player: state.player
+    player: state.singlePlayer
   }
 }
 
